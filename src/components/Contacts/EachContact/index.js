@@ -1,0 +1,1 @@
+export { EachContact } from './EachContact';
