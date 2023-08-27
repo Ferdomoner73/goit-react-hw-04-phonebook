@@ -6,18 +6,20 @@ import { ContactsList } from './Contacts';
 const CONTACTS_KEY = 'contacts';
 
 export const App = () => {
-  const [contacts, setContacts] = useState([
-    ...JSON.parse(localStorage.getItem(CONTACTS_KEY)),
-  ]);
+  const [contacts, setContacts] = useState([]);
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
-    localStorage.setItem(CONTACTS_KEY, JSON.stringify(contacts));
-    console.log(contacts);
+    setContacts([...JSON.parse(localStorage.getItem(CONTACTS_KEY))]);
+  }, []);
+
+  useEffect(() => {
+    if (contacts.length > 0) {
+      localStorage.setItem(CONTACTS_KEY, JSON.stringify(contacts));
+    }
   }, [contacts]);
 
   const addNewContact = e => {
-    console.log(contacts);
     if (
       contacts.find(contact => {
         return contact.name === e.name;
@@ -36,20 +38,18 @@ export const App = () => {
   };
 
   const handleChange = e => {
-    console.log(contacts);
     const value = e.target.value.toLowerCase();
     setFilter(value);
   };
 
   const filterContactsList = () => {
-    console.log(contacts);
     return contacts.filter(({ name }) => name.toLowerCase().includes(filter));
   };
 
   const handleDelete = name => {
-    console.log(contacts);
     const remainingContacts = contacts.filter(contact => contact.name !== name);
     setContacts([...remainingContacts]);
+    localStorage.setItem(CONTACTS_KEY, JSON.stringify(remainingContacts));
   };
 
   return (
