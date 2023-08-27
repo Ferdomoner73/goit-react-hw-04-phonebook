@@ -10,7 +10,11 @@ export const App = () => {
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
-    setContacts([...JSON.parse(localStorage.getItem(CONTACTS_KEY))]);
+    const itemExist = localStorage.getItem(CONTACTS_KEY) !== null;
+
+    if (itemExist) {
+      setContacts([...JSON.parse(localStorage.getItem(CONTACTS_KEY))]);
+    }
   }, []);
 
   useEffect(() => {
