@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import { Container } from './app.styled';
 import { ContactsForm } from './Form';
@@ -58,15 +57,4 @@ export const App = () => {
       />
     </Container>
   );
-};
-
-App.propTypes = {
-  INITITAL_VALUES: PropTypes.shape({
-    contacts: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        number: PropTypes.string.isRequired,
-      })
-    ),
-  }),
 };
