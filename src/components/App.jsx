@@ -13,9 +13,11 @@ export const App = () => {
 
   useEffect(() => {
     localStorage.setItem(CONTACTS_KEY, JSON.stringify(contacts));
+    console.log(contacts);
   }, [contacts]);
 
   const addNewContact = e => {
+    console.log(contacts);
     if (
       contacts.find(contact => {
         return contact.name === e.name;
@@ -34,15 +36,18 @@ export const App = () => {
   };
 
   const handleChange = e => {
+    console.log(contacts);
     const value = e.target.value.toLowerCase();
     setFilter(value);
   };
 
   const filterContactsList = () => {
+    console.log(contacts);
     return contacts.filter(({ name }) => name.toLowerCase().includes(filter));
   };
 
   const handleDelete = name => {
+    console.log(contacts);
     const remainingContacts = contacts.filter(contact => contact.name !== name);
     setContacts([...remainingContacts]);
   };

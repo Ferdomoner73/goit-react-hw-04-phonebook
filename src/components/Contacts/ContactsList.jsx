@@ -10,6 +10,8 @@ import {
 } from './contacts.styled';
 
 export const ContactsList = ({ contacts, handleChange, handleDelete }) => {
+  console.log(contacts);
+
   return (
     <ContactsListContainer>
       <ContactsListTitle>Contacts</ContactsListTitle>
